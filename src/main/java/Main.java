@@ -21,7 +21,7 @@ import java.util.List;
 public class Main extends ListenerAdapter{
 
     public static void main(String[] args) {
-        String token = "MTA4MzEzNDE5Mzk4NDM0ODI4MA.GxQTgi.CoUH8Qzysfkq6ReZI_oJhh3G_tt_MMxiAm40BY";
+        String token = "MTA4MzEzNDE5Mzk4NDM0ODI4MA.GBaH8r.IO8o3gJWI9nznt9D8VZcb7A_tn8pyyru5xcwAM";
         JDA bot = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .setActivity(Activity.listening("you suck"))
