@@ -13,16 +13,43 @@ import net.dv8tion.jda.api.utils.FileUpload;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Properties;
 
 
 public class Main extends ListenerAdapter{
 
+
+    public static Properties prop;
+    public static FileInputStream fileInput;
+
     public static void main(String[] args) {
+<<<<<<< Updated upstream
         String token = "MTA4MzEzNDE5Mzk4NDM0ODI4MA.GBaH8r.IO8o3gJWI9nznt9D8VZcb7A_tn8pyyru5xcwAM";
         JDA bot = JDABuilder.createDefault(token)
+=======
+        prop = new Properties();
+
+        //load properties file
+
+        File file = new File(System.getProperty("user.dir") + "//src//main//resources//config.properties");
+        try {
+            fileInput = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            prop.load(fileInput);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JDA bot = JDABuilder.createDefault(prop.getProperty("token"))
+>>>>>>> Stashed changes
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .setActivity(Activity.listening("you suck"))
                 .addEventListeners(new Main()).build();
