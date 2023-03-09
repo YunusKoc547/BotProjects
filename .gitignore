@@ -1,8 +1,2 @@
-<<<<<<< Updated upstream
-pics
-/.idea
-=======
-/src/main/pics
-/.idea
-/src/main/resources/config.properties
->>>>>>> Stashed changes
+pics/
+config.properties

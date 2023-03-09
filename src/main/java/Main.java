@@ -28,10 +28,7 @@ public class Main extends ListenerAdapter{
     public static FileInputStream fileInput;
 
     public static void main(String[] args) {
-<<<<<<< Updated upstream
-        String token = "MTA4MzEzNDE5Mzk4NDM0ODI4MA.GBaH8r.IO8o3gJWI9nznt9D8VZcb7A_tn8pyyru5xcwAM";
-        JDA bot = JDABuilder.createDefault(token)
-=======
+
         prop = new Properties();
 
         //load properties file
@@ -48,8 +45,9 @@ public class Main extends ListenerAdapter{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JDA bot = JDABuilder.createDefault(prop.getProperty("token"))
->>>>>>> Stashed changes
+
+        String tokenString = prop.getProperty("token");
+        JDA bot = JDABuilder.createDefault(tokenString)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .setActivity(Activity.listening("you suck"))
                 .addEventListeners(new Main()).build();
@@ -87,7 +85,7 @@ public class Main extends ListenerAdapter{
 
             if(event.getMessage().getContentRaw().equalsIgnoreCase("!chingaTuMadre")) {
                 RestAction<Message> rest;
-                file = new File(System.getProperty("user.dir") + "//src//main//pics//ifykyk.png");
+                file = new File(System.getProperty("user.dir") + "//src//main//resources//pics//ifykyk.png");
 
 
                 event.getChannel().sendFiles(FileUpload.fromData(file).asSpoiler()).queue();
