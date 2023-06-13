@@ -133,7 +133,6 @@ public class Main extends ListenerAdapter{
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    event.getChannel().sendMessage("retard").queue();
                 } else {
 //                    try {
 //                        Thread.sleep(500);
