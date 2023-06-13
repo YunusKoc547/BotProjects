@@ -106,7 +106,7 @@ public class Main extends ListenerAdapter{
             event.getMessage().addReaction(Emoji.fromFormatted("U+270AU+1F3FF")).complete();
         }
 
-        if(event.getAuthor().getName().equals("TNT SEXY BEAST")) {
+        if(event.getAuthor().getName().equals("TNT1231")) {
             event.getMessage().addReaction(Emoji.fromCustom("numan", 1001519460571684966L,true)).complete();
         }
         List<Role> mentionables = event.getMessage().getMentions().getRoles();
@@ -184,14 +184,9 @@ public class Main extends ListenerAdapter{
 
     @Override
     public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
-//        System.out.println(Objects.requireNonNull(event.getUser()).getName());
 
-//        String user = Objects.requireNonNull(event.getUser()).getName();
-//        System.out.println(user);
-//        user.getName()
             if (!event.getUser().isBot()) {
 
-//        System.out.println(Objects.requireNonNull(event.getUser()).getName());
 
                 String user = event.getUser().getName();
                 System.out.println(user);
@@ -259,7 +254,7 @@ public class Main extends ListenerAdapter{
             JsonPath js = new JsonPath(getPlaceResponse);
             event.reply(js.getString("text")).complete();
         }else if(command.equals("commands")) {
-            event.reply("/chingatumadre    /funfact    /commands    /lineup    /clear   /numanhookincident    /upcominggames").queue();
+            event.reply("/funfact    /commands    /lineup    /clear   /numanhookincident    /upcominggames").queue();
         }else if (command.equals("clear")) {
             lineup.clear();
             event.reply("The lineup has been cleared").queue();
