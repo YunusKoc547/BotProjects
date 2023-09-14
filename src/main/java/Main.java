@@ -56,6 +56,10 @@ public class Main extends ListenerAdapter{
 
 
 
+
+
+
+
 //        System.out.println(js.getString("text"));
 
         File file = new File(System.getProperty("user.dir") + "//src//main//resources//config.properties");
@@ -91,6 +95,7 @@ public class Main extends ListenerAdapter{
     }
 
     List<String> lineup = new ArrayList<>();
+    List<String> lineupForMentions = new ArrayList<>();
     File file = null;
     String id = "";
     String callerName = "";
@@ -105,6 +110,7 @@ public class Main extends ListenerAdapter{
         if(event.getAuthor().getName().equals("AmeghMKadegh")) {
             event.getMessage().addReaction(Emoji.fromFormatted("U+270AU+1F3FF")).complete();
         }
+
 
         if(event.getAuthor().getName().equals("TNT1231")) {
             event.getMessage().addReaction(Emoji.fromCustom("numan", 1001519460571684966L,true)).complete();
@@ -140,6 +146,7 @@ public class Main extends ListenerAdapter{
 //                        throw new RuntimeException(e);
 //                    }
                     lineup.add(event.getAuthor().getName());
+                    lineupForMentions.add(event.getAuthor().getAsMention());
                 }
             }
         }
@@ -168,7 +175,6 @@ public class Main extends ListenerAdapter{
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
-                        event.getChannel().sendMessage("retard").queue();
                     } else {
                         lineup.add(event.getAuthor().getName());
                     }
@@ -184,7 +190,7 @@ public class Main extends ListenerAdapter{
     @Override
     public void onMessageReactionRemove(MessageReactionRemoveEvent event) {
 
-            if (!event.getUser().isBot()) {
+            if (!Objects.requireNonNull(event.getUser()).isBot()) {
 
 
                 String user = event.getUser().getName();
@@ -195,6 +201,7 @@ public class Main extends ListenerAdapter{
                         System.out.println("entered");
 //                        event.getChannel().deleteMessageById(previousLineupMessageId).queue();
                         event.getChannel().editMessageById(previousLineupMessageId,"The current 5 man lineup is: " + lineup).queue();
+                        lineupForMentions.remove(event.getUser().getAsMention());
 //                    event.getChannel().editMessageById(previousLineupMessageId,"The current valo lineup is: " + lineup).queue();
 
 
@@ -218,6 +225,11 @@ public class Main extends ListenerAdapter{
             if (event.getReaction().toString().contains("U+2705") && event.getReaction().toString().contains(id)) {
                 if (!lineup.contains(user)) {
                     lineup.add(user);
+                    lineupForMentions.add(event.getUser().getAsMention());
+                }
+                if (lineup.size() == 5) {
+
+                    event.getChannel().sendMessage(lineupForMentions + " THE LINEUP IS READY").queue();
                 }
                 try {
                     if (previousLineupMessageId.isEmpty()) {
@@ -328,7 +340,7 @@ public class Main extends ListenerAdapter{
             System.out.println(response);
             event.reply(response).queue();
 
-        }
+        }   
     }
 
     @Override
